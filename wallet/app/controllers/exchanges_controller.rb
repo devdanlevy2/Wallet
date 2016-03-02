@@ -5,7 +5,9 @@ class ExchangesController < ApplicationController
   # GET /exchanges.json
   def index
     @exchanges = Exchange.all
-    @total_transactions = Exchange.total_transactions
+    @transactions = Exchange.transactions
+    @balance = Exchange.balance
+    # @list_of_transactions = Exchange.list_of_transactions
   end
 
   # GET /exchanges/1
