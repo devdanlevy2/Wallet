@@ -7,6 +7,9 @@ class ExchangesController < ApplicationController
     @exchanges = Exchange.all
     @transactions = Exchange.transactions
     @balance = Exchange.balance
+    if @balance < 0
+      flash[:notice] = "Hey Bozo, you broke as a yolk."
+    end
     # @list_of_transactions = Exchange.list_of_transactions
   end
 
