@@ -17,7 +17,11 @@ class Exchange < ActiveRecord::Base
   end
 
   def self.last_months_spendings
-
+    last_months_spendings = []
+    self.all.each do |c|
+      last_months_spendings << c.amount if c.amount < 0 && ((Time.now.mon - 1) == c.created_at.mon)
+    end
+    last_months_spendings = last_months_spendings.reduce(0.0) {|sum, c| sum += c}
   end
 
   def self.total_monthly_transactions

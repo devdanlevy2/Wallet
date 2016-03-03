@@ -8,6 +8,7 @@ class ExchangesController < ApplicationController
     @transactions = Exchange.transactions
     @balance = Exchange.balance
     @current_monthly_spendings = Exchange.current_monthly_spendings
+    @last_months_spendings = Exchange.last_months_spendings
     if @balance < 0
       flash[:notice] = "Hey Bozo, you broke as a yolk."
     end
