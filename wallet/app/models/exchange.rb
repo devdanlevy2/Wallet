@@ -42,12 +42,17 @@ class Exchange < ActiveRecord::Base
   end
 
   def self.largest_current_month
-
+    largest_current_month = []
+    self.all.each do |c|
+      largest_current_month << c.amount if (Time.now.mon == c.created_at.mon)
+    end
+    largest_current_month.max
   end
 
   def self.largest_total_expense
 
   end
+
 
   # def self.list_of_transactions
   #   array = []

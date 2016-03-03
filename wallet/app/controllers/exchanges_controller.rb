@@ -11,6 +11,7 @@ class ExchangesController < ApplicationController
     @last_months_spendings = Exchange.last_months_spendings
     @total_monthly_transactions = Exchange.total_monthly_transactions
     @total_last_months_transactions = Exchange.total_last_months_transactions
+    @largest_current_month = Exchange.largest_current_month
     if @balance < 0
       flash[:notice] = "Hey Bozo, you broke as a yolk."
     end
