@@ -25,10 +25,19 @@ class Exchange < ActiveRecord::Base
   end
 
   def self.total_monthly_transactions
-
+    total_monthly_transactions = []
+    self.all.each do |c|
+      total_monthly_transactions << c.amount if (Time.now.mon == c.created_at.mon)
+    end
+    total_monthly_transactions = total_monthly_transactions.reduce(0.0) {|sum, c| sum += c}
   end
 
-  def self.total_last_months_transaction
+  def self.total_last_months_transactions
+    total_last_months_transactions = []
+    self.all.each do |c|
+      total_last_months_transactions << c.amount if ((Time.now.mon - 1) == c.created_at.mon)
+    end
+    total_last_months_transactions = total_last_months_transactions.reduce(0.0) {|sum, c| sum += c}
 
   end
 
@@ -40,11 +49,11 @@ class Exchange < ActiveRecord::Base
 
   end
 
-  def self.list_of_transactions
-    array = []
-    self.all.each do |t|
-      array << t
-    end
-    array
-  end
+  # def self.list_of_transactions
+  #   array = []
+  #   self.all.each do |t|
+  #     array << t
+  #   end
+  #   array
+  # end
 end

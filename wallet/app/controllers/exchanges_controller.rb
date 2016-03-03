@@ -9,10 +9,12 @@ class ExchangesController < ApplicationController
     @balance = Exchange.balance
     @current_monthly_spendings = Exchange.current_monthly_spendings
     @last_months_spendings = Exchange.last_months_spendings
+    @total_monthly_transactions = Exchange.total_monthly_transactions
+    @total_last_months_transactions = Exchange.total_last_months_transactions
     if @balance < 0
       flash[:notice] = "Hey Bozo, you broke as a yolk."
     end
-    @list_of_transactions = Exchange.list_of_transactions
+    # @list_of_transactions = Exchange.list_of_transactions
   end
 
   # GET /exchanges/1
